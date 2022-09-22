@@ -10,6 +10,7 @@ public class Apple : MonoBehaviour
     {
         if (transform.position.y < bottomY)
         {
+            FindObjectOfType<ApplePicker>().OnAppleDestroyed();
             Destroy(gameObject);
         }
     }

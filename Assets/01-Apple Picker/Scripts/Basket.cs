@@ -5,14 +5,13 @@ using TMPro;
 
 public class Basket : MonoBehaviour
 {
-    public TMP_Text scoreText;
+    ApplePicker ap;
     public int score = 0;
 
     private void Start()
     {
-        scoreText = FindObjectOfType<ApplePicker>().scoreText;
-        score = 0;
-        scoreText.text = score.ToString();
+        ap = FindObjectOfType<ApplePicker>();
+        score = ap.score;
     }
 
     private void Update()
@@ -32,8 +31,7 @@ public class Basket : MonoBehaviour
         GameObject collidedWith = collision.gameObject;
         if (collidedWith.tag == "Apple")
         {
-            score++;
-            scoreText.text = score.ToString();
+            ap.OnScoreIncrease(1);
             Destroy(collidedWith);
         }
     }
