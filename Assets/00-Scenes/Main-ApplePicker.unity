@@ -1967,6 +1967,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 572307960, guid: 8a463b3570c945a49b1a9c80a290b519, type: 3}
+      propertyPath: defaultSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 572307960, guid: 8a463b3570c945a49b1a9c80a290b519, type: 3}
       propertyPath: chanceToChangeDirection
       value: 0.0008
       objectReference: {fileID: 0}

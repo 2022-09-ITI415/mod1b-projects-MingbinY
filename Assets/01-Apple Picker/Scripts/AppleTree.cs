@@ -92,6 +92,6 @@ public class AppleTree : MonoBehaviour
             speedCap = Random.Range(1, speedCap);
         }
         
-        defaultSpeed = speedCap;
+        defaultSpeed += speedCap;
     }
 }
