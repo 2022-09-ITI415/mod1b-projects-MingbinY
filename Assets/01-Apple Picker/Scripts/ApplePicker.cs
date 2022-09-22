@@ -54,9 +54,10 @@ public class ApplePicker : MonoBehaviour
 
     public void OnAppleDestroyed()
     {
-        GameObject topBasket = basketList[-1];
+        GameObject topBasket = basketList[numBaskets-1];
         Destroy(topBasket);
-        basketList.RemoveAt(-1);
+        basketList.RemoveAt(numBaskets-1);
+        numBaskets--;
         currentHealth--;
         healthText.text = currentHealth.ToString();
         if (currentHealth <= 0)
