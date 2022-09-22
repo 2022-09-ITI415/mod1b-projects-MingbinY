@@ -702,7 +702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1635595384}
   healthText: {fileID: 1175991921}
-  highScoreText: {fileID: 0}
+  highScoreText: {fileID: 164904156}
   gameOverPanel: {fileID: 1287637461}
   scoreManager: {fileID: 0}
   highScore: 0
