@@ -10,8 +10,11 @@ public class ApplePicker : MonoBehaviour
     [Header("UI")]
     public TMP_Text scoreText;
     public TMP_Text healthText;
+    public TMP_Text highScoreText;
     public GameObject gameOverPanel;
+    public ScoreManager scoreManager;
 
+    public int highScore;
     public int score;
     public int currentHealth;
     public int maxHealth = 3;
@@ -24,6 +27,9 @@ public class ApplePicker : MonoBehaviour
 
     private void Start()
     {
+        scoreManager = FindObjectOfType<ScoreManager>();
+        highScore = scoreManager.highScore;
+        highScoreText.text = highScore.ToString();
         currentHealth = maxHealth;
         Vector3 pos = Vector3.zero;
         pos.y = basketBottomY + basketSpacingY;
@@ -61,6 +67,10 @@ public class ApplePicker : MonoBehaviour
         foreach (Apple apple in apples)
         {
             Destroy(apple);
+        }
+        if (score > highScore)
+        {
+            scoreManager.highScore = score;
         }
     }
 
