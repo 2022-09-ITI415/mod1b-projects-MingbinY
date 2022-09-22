@@ -20,6 +20,7 @@ public class ApplePicker : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
 
+    AppleTree at;
     public GameObject basketPrefab;
     GameObject currentBasket;
     [SerializeField]List<GameObject> basketList;
@@ -34,6 +35,7 @@ public class ApplePicker : MonoBehaviour
         highScoreText.text = highScore.ToString();
         maxHealth = numBaskets;
         currentHealth = maxHealth;
+        at = FindObjectOfType<AppleTree>();
 
         //Instantiate baskets
         Vector3 pos = Vector3.zero;
@@ -70,6 +72,11 @@ public class ApplePicker : MonoBehaviour
     {
         score += scoreToAdd;
         scoreText.text = score.ToString();
+        if (score % 10 == 0 && score != 0)
+        {
+            at.speedCap = score / 10;
+            at.UpdateSpeedMultiply();
+        }
     }
 
     void GameOver()

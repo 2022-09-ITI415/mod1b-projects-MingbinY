@@ -12,7 +12,9 @@ public class AppleTree : MonoBehaviour
 
     // Speed at which the AppleTree moves
 
-    public float speed = 1f;
+    public float defaultSpeed = 1f;
+    public float speedMultiply = 1f;
+    public float speedCap = 1;
 
     // Distance where AppleTree turns around
 
@@ -29,7 +31,7 @@ public class AppleTree : MonoBehaviour
 
     void Start()
     {
-
+        speedCap = 1;
         // Dropping apples every second
         Invoke("DropApple", 2f);
 
@@ -41,7 +43,7 @@ public class AppleTree : MonoBehaviour
         // Basic Movement
         Vector3 pos = transform.position;
 
-        pos.x += speed * Time.deltaTime;
+        pos.x += defaultSpeed * Time.deltaTime;
 
         transform.position = pos;
 
@@ -49,12 +51,12 @@ public class AppleTree : MonoBehaviour
         if (pos.x < -leftAndRightEdge)
         {
 
-            speed = Mathf.Abs(speed); // Move ri
+            defaultSpeed = Mathf.Abs(defaultSpeed); // Move ri
         }
         else if (pos.x > leftAndRightEdge)
         {
 
-            speed = -Mathf.Abs(speed); // Move l
+            defaultSpeed = -Mathf.Abs(defaultSpeed); // Move l
         }
     }
 
@@ -64,7 +66,7 @@ public class AppleTree : MonoBehaviour
         // Changing Direction Randomly is now t
 
         if (Random.value < chanceToChangeDirection)
-            speed *= -1; // Change direction
+            defaultSpeed *= -1; // Change direction
     }
 
     void DropApple()
@@ -77,5 +79,19 @@ public class AppleTree : MonoBehaviour
     {
         float newTime = Random.value * secondsBetweenAppleDrop;
         return newTime;
+    }
+
+    public void UpdateSpeedMultiply()
+    {
+        if (speedCap >= 2)
+        {
+            speedCap = Random.Range(speedCap - 1, speedCap);
+        }
+        else
+        {
+            speedCap = Random.Range(1, speedCap);
+        }
+        
+        defaultSpeed = speedCap;
     }
 }
