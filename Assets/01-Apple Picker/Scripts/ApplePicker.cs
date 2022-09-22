@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Net;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class ApplePicker : MonoBehaviour
 {
@@ -17,10 +18,11 @@ public class ApplePicker : MonoBehaviour
     public int highScore;
     public int score;
     public int currentHealth;
-    public int maxHealth = 3;
+    public int maxHealth;
 
     public GameObject basketPrefab;
     GameObject currentBasket;
+    [SerializeField]List<GameObject> basketList;
     public int numBaskets = 3;
     public float basketBottomY = -14;
     public float basketSpacingY = 2f;
@@ -30,10 +32,18 @@ public class ApplePicker : MonoBehaviour
         scoreManager = FindObjectOfType<ScoreManager>();
         highScore = scoreManager.highScore;
         highScoreText.text = highScore.ToString();
+        maxHealth = numBaskets;
         currentHealth = maxHealth;
+
+        //Instantiate baskets
         Vector3 pos = Vector3.zero;
-        pos.y = basketBottomY + basketSpacingY;
-        currentBasket = Instantiate(basketPrefab, pos, Quaternion.identity);
+        pos.y = basketBottomY;
+        for (int i = 0; i < numBaskets; i++)
+        {
+            pos.y += basketSpacingY;
+            GameObject newBasket = Instantiate(basketPrefab, pos, Quaternion.identity);
+            basketList.Add(newBasket);
+        }
         healthText.text = currentHealth.ToString();
     }
 
@@ -44,6 +54,9 @@ public class ApplePicker : MonoBehaviour
 
     public void OnAppleDestroyed()
     {
+        GameObject topBasket = basketList[-1];
+        Destroy(topBasket);
+        basketList.RemoveAt(-1);
         currentHealth--;
         healthText.text = currentHealth.ToString();
         if (currentHealth <= 0)
@@ -61,7 +74,6 @@ public class ApplePicker : MonoBehaviour
     void GameOver()
     {
         gameOverPanel.SetActive(true);
-        Destroy(currentBasket);
         Destroy(FindObjectOfType<AppleTree>().gameObject);
         Apple[] apples = FindObjectsOfType<Apple>();
         foreach (Apple apple in apples)
