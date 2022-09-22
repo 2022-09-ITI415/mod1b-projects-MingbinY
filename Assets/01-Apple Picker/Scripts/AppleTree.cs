@@ -70,6 +70,12 @@ public class AppleTree : MonoBehaviour
     void DropApple()
     {
         GameObject apple = Instantiate(applePrefab, transform.position, Quaternion.identity);
-        Invoke("DropApple", secondsBetweenAppleDrop);
+        Invoke("DropApple", GetNewBetweenDropTime());
+    }
+
+    float GetNewBetweenDropTime()
+    {
+        float newTime = Random.value * secondsBetweenAppleDrop;
+        return newTime;
     }
 }
