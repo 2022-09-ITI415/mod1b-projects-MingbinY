@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum GameMode
@@ -37,7 +38,7 @@ public class MissionDemolition : MonoBehaviour
         StartLevel();
     }
 
-    void StartLevel()
+    public void StartLevel()
     {
         if (castle != null)
         {
@@ -123,5 +124,10 @@ public class MissionDemolition : MonoBehaviour
     public static void ShotFired()
     {
         S.shotsTaken++;
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
