@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FollowCam : MonoBehaviour
 {
+    [SerializeField]
     static public GameObject POI;
 
     public float camZ;
