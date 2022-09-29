@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
+    static private Slingshot S;
+    static public Vector3 LAUNCH_POS
+    {
+        get
+        {
+            if (S == null)
+                return Vector3.zero;
+            else
+                return S.launchPos;
+        }
+    }
+
     public GameObject launchPoint;
     public GameObject prefabProjectile;
 
@@ -16,6 +28,7 @@ public class Slingshot : MonoBehaviour
 
     private void Awake()
     {
+        S = this;
         Transform launchPointTrans = transform.Find("LaunchPoint");
         launchPoint = launchPointTrans.gameObject;
         launchPoint.SetActive(false);
