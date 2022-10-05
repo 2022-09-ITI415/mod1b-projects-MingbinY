@@ -26,7 +26,8 @@ public class GunController : MonoBehaviour
 
     public void HandleShoot()
     {
-        inputActions.Movement.Jump.performed += i => shootInput = true;
+        //inputActions.Action.Shoot.performed += i => shootInput = true;
+        shootInput = inputActions.Action.Shoot.IsPressed();
         if (shootInput)
         {
             equippedGun.Shoot();

@@ -162,6 +162,34 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Action"",
+            ""id"": ""b21d5c83-ba9e-4bac-92cd-8fcf5465c061"",
+            ""actions"": [
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""fd23b71d-5859-4394-92d8-39e2f0ae75f8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4920f6bb-52b3-42c0-a65d-60f1d5f5040e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -174,6 +202,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_ESC = m_Menu.FindAction("ESC", throwIfNotFound: true);
+        // Action
+        m_Action = asset.FindActionMap("Action", throwIfNotFound: true);
+        m_Action_Shoot = m_Action.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -311,6 +342,39 @@ public partial class @Player : IInputActionCollection2, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // Action
+    private readonly InputActionMap m_Action;
+    private IActionActions m_ActionActionsCallbackInterface;
+    private readonly InputAction m_Action_Shoot;
+    public struct ActionActions
+    {
+        private @Player m_Wrapper;
+        public ActionActions(@Player wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Shoot => m_Wrapper.m_Action_Shoot;
+        public InputActionMap Get() { return m_Wrapper.m_Action; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ActionActions set) { return set.Get(); }
+        public void SetCallbacks(IActionActions instance)
+        {
+            if (m_Wrapper.m_ActionActionsCallbackInterface != null)
+            {
+                @Shoot.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnShoot;
+            }
+            m_Wrapper.m_ActionActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+            }
+        }
+    }
+    public ActionActions @Action => new ActionActions(this);
     public interface IMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -320,5 +384,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
     public interface IMenuActions
     {
         void OnESC(InputAction.CallbackContext context);
+    }
+    public interface IActionActions
+    {
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

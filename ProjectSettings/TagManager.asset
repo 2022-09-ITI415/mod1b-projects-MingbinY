@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Apple
   - Projectile
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - AppleTree
   - Apple
   - Basket
-  - 
-  - 
+  - Projectile
+  - Weapon
   - 
   - 
   - 
