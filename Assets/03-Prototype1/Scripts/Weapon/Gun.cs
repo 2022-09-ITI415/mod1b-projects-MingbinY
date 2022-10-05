@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     public float reloadTime = 3f;
     public float reloadTimer;
     public bool canShoot = true;
+    bool reloading = false;
 
     public Transform muzzle;
     public Bullet bullet;
@@ -24,20 +25,12 @@ public class Gun : MonoBehaviour
         bulletInMag = bulletPerMag;
     }
 
-    public virtual void Update()
-    {
-        if (bulletInMag == 0)
-        {
-            canShoot = false;
-            StartCoroutine(Reload());
-        }
-    }
-
     IEnumerator Reload()
     {
         yield return new WaitForSeconds(reloadTime);
         bulletInMag = bulletPerMag;
         canShoot=true;
+        reloading = false;
     }
 
     public virtual void Shoot()
@@ -51,6 +44,12 @@ public class Gun : MonoBehaviour
             newProjectile.SetSpeed(muzzleVelocity);
         }
 
+        if (bulletInMag == 0 && !reloading)
+        {
+            reloading = true;
+            canShoot = false;
+            StartCoroutine(Reload());
+        }
     }
 
 }

@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
+        GetComponent<Collider>().isTrigger = true;
         Destroy(gameObject, 10f);
     }
 
@@ -25,5 +26,17 @@ public class Bullet : MonoBehaviour
     private void Update()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    }
+
+    public virtual void OnTriggerEnter(Collider other)
+    {
+        BasicHealthManager hm = other.GetComponent<BasicHealthManager>();
+        if (hm)
+        {
+            hm.TakeDamage(damage);
+        }
+
+
+        Destroy(gameObject);
     }
 }
