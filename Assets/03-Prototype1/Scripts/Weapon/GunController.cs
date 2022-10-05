@@ -17,21 +17,22 @@ public class GunController : MonoBehaviour
 
     bool nextGunInput;
     bool prevGunInput;
-    public int currentWeaponIndex;
+    public int currentGunIndex;
 
     private void Start()
     {
         inputActions = FindObjectOfType<PlayerController>().inputActions;
-        currentWeaponIndex = 0;
-        if (gunList[currentWeaponIndex] != null)
+        currentGunIndex = 0;
+        if (gunList[currentGunIndex] != null)
         {
-            EquipGun(gunList[currentWeaponIndex]);
+            EquipGun(gunList[currentGunIndex]);
         }
     }
 
     private void Update()
     {
         HandleShoot();
+        HandleChangeWeapon();
     }
 
     public void HandleShoot()
@@ -76,8 +77,7 @@ public class GunController : MonoBehaviour
     }
 
     void UpdateGunUI()
-    {
-        int currentGunIndex = gunList.IndexOf(equippedGun);
+    {;
         int nextGunIndex = currentGunIndex;
         int prevGunIndex = currentGunIndex;
 
