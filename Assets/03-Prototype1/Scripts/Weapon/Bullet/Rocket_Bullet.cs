@@ -5,10 +5,12 @@ using UnityEngine;
 public class Rocket_Bullet : Bullet
 {
     public float explosionRadius = 5f;
+    public GameObject explosionVFX;
+
     public override void OnTriggerEnter(Collider other)
     {
-
         //Explosion VFX
+        Instantiate(explosionVFX, transform.position, Quaternion.identity);
         Collider[] cols = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider col in cols)
         {
@@ -20,5 +22,4 @@ public class Rocket_Bullet : Bullet
         }
         Destroy(gameObject);
     }
-
 }

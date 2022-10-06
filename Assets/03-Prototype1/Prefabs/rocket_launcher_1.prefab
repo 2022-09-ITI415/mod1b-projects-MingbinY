@@ -129,16 +129,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c113475092ba69488389cdcd253608f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunName: Rocket Launcher
+  gunSprite: {fileID: 21300000, guid: 72af0757d52e28947bc99f5ee0c04d42, type: 3}
   bulletPerMag: 1
   bulletInMag: 0
   reloadTime: 5
   reloadTimer: 0
   canShoot: 1
+  reloading: 0
   muzzle: {fileID: 729894459}
-  bullet: {fileID: 6781707342039975202, guid: 485059bbf4b748043b82210b4a8880a1, type: 3}
+  bullet: {fileID: -5887494005981276187, guid: 485059bbf4b748043b82210b4a8880a1, type: 3}
   msBetweenShots: 100
   muzzleVelocity: 40
   damage: 20
+  nextShotTime: 0
+  rocketBullet: {fileID: 0}
   rocketInMuzzle: {fileID: 7029024874066926690}
 --- !u!1 &7029024874066926690
 GameObject:

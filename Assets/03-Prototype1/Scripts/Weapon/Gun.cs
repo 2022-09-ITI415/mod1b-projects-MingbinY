@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public BulletSource b_source;
+
+    public string gunName;
+    public Sprite gunSprite;
+
     public int bulletPerMag = 12;
-    [SerializeField] int bulletInMag;
+    public int bulletInMag;
     public float reloadTime = 3f;
     public float reloadTimer;
     public bool canShoot = true;
-    bool reloading = false;
+    public bool reloading = false;
 
     public Transform muzzle;
     public Bullet bullet;
@@ -18,14 +23,14 @@ public class Gun : MonoBehaviour
 
     public int damage = 20;
 
-    float nextShotTime;
+    public float nextShotTime;
 
     private void Start()
     {
         bulletInMag = bulletPerMag;
     }
 
-    IEnumerator Reload()
+    public IEnumerator Reload()
     {
         yield return new WaitForSeconds(reloadTime);
         bulletInMag = bulletPerMag;
@@ -33,13 +38,14 @@ public class Gun : MonoBehaviour
         reloading = false;
     }
 
-    public virtual void Shoot()
+    public virtual void Shoot(BulletSource bs)
     {
         if (Time.time > nextShotTime && canShoot)
         {
             bulletInMag--;
             nextShotTime = Time.time + msBetweenShots / 1000;
-            Bullet newProjectile = Instantiate(bullet, muzzle.transform.position, transform.rotation) as Bullet;
+            Bullet newProjectile = Instantiate(bullet, muzzle.transform.position, transform.rotation);
+            newProjectile.SetSource(bs);
             newProjectile.SetDamage(damage);
             newProjectile.SetSpeed(muzzleVelocity);
         }

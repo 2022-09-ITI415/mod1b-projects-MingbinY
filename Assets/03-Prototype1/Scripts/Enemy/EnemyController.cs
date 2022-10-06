@@ -22,8 +22,13 @@ public class EnemyController : MonoBehaviour
 
     public float viewDist = 10;
     public float attackDist = 5;
+    public float moveSpeed = 3.5f;
 
-    private void Awake()
+    public bool isAttacking;
+
+    public float attackCooldown = 3f;
+
+    public virtual void Awake()
     {
         playerObj = FindObjectOfType<PlayerController>().gameObject;
         agent = GetComponent<NavMeshAgent>();
@@ -86,7 +91,36 @@ public class EnemyController : MonoBehaviour
     {
         agent.stoppingDistance = attackDist;
 
-        agent.SetDestination(playerObj.transform.position);
+
+        if (!isAttacking && Vector3.Distance(transform.position, playerObj.transform.position) > attackDist + 3)
+        {
+            // if player is out of attack range and the enemy is not attacking the enemy can move
+            agent.SetDestination(playerObj.transform.position);
+            return;
+        }
+
+        if (PlayerInsight())
+        {
+            LookAtPlayer();
+        }
+
+        if (Vector3.Distance(transform.position, playerObj.transform.position) <= attackDist)
+        {
+            // if player is in attack range
+            if (!isAttacking)
+            {
+                isAttacking = true;
+                Attack();
+            }
+        }
+    }
+
+    void LookAtPlayer()
+    {
+        Vector3 targetPos = playerObj.transform.position;
+        targetPos.y = transform.position.y;
+
+        transform.LookAt(targetPos);
     }
 
     bool PlayerInsight()
@@ -103,5 +137,8 @@ public class EnemyController : MonoBehaviour
         return false;
     }
 
+    public virtual void Attack()
+    {
 
+    }
 }

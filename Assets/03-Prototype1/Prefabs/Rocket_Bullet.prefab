@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4299481822821287394}
   - component: {fileID: 3278749707994624923}
   - component: {fileID: 6781707342039975203}
-  - component: {fileID: 6781707342039975202}
   - component: {fileID: 6828185554510989354}
+  - component: {fileID: -5887494005981276187}
   m_Layer: 0
   m_Name: Rocket_Bullet
   m_TagString: Untagged
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6781707342039975202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2652116915129427145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55103487f4dae2f47a0298fb811ccf76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  damage: 10
 --- !u!64 &6828185554510989354
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -113,3 +99,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c09899df9d3142f46a303cd551920f5b, type: 3}
+--- !u!114 &-5887494005981276187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2652116915129427145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26126a0b772731b44abd23989ebd0b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  damage: 10
+  explosionRadius: 5
+  explosionVFX: {fileID: 1000012903210382, guid: 85faa2cbd1d5cfa4f822bb5c4ee3f98c, type: 3}

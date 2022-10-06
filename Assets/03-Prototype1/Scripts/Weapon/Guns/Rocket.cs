@@ -5,14 +5,17 @@ using UnityEngine;
 public class Rocket : Gun
 {
     public GameObject rocketInMuzzle;
-    public override void Shoot()
+
+
+    public override void Shoot(BulletSource bs)
     {
         if (canShoot)
         {
             rocketInMuzzle.SetActive(false);
             Invoke("ShowRocket", reloadTime);
         }
-        base.Shoot();
+
+        base.Shoot(bs);
     }
 
     void ShowRocket()

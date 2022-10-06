@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a777799ac72bd4886c11ae6f4d6882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunName: Rifle
+  gunSprite: {fileID: 21300044, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
   bulletPerMag: 30
   bulletInMag: 0
   reloadTime: 3

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HandGun : Gun
 {
-    public override void Shoot()
+    public override void Shoot(BulletSource bs)
     {
-        base.Shoot();
+        base.Shoot(bs);
     }
 }

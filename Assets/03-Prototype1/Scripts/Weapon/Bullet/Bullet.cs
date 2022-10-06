@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BulletSource
+{
+    Player,
+    Enemy
+}
 public class Bullet : MonoBehaviour
 {
     public float speed = 10;
     public int damage = 10;
+
+    public BulletSource b_source;
 
     private void Start()
     {
@@ -23,6 +30,11 @@ public class Bullet : MonoBehaviour
         damage = newDamage;
     }
 
+    public void SetSource(BulletSource bulletSource)
+    {
+        b_source = bulletSource;
+    }
+
     private void Update()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
@@ -30,12 +42,23 @@ public class Bullet : MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        BasicHealthManager hm = other.GetComponent<BasicHealthManager>();
-        if (hm)
+        if (b_source == BulletSource.Player)
         {
-            hm.TakeDamage(damage);
+            EnemyHealthManager ehm = other.GetComponent<EnemyHealthManager>();
+            if (ehm != null)
+            {
+                ehm.TakeDamage(damage);
+            }
         }
 
+        if (b_source == BulletSource.Enemy)
+        {
+            PlayerHealthManager phm = other.GetComponent<PlayerHealthManager>();
+            if (phm != null)
+            {
+                phm.TakeDamage(damage);
+            }
+        }
 
         Destroy(gameObject);
     }
