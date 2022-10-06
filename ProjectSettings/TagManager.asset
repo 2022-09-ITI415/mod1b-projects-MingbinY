@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - Weapon
   - Enemy
+  - FX
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Basket
   - Projectile
   - Weapon
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 

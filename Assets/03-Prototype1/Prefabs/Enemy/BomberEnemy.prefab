@@ -173,13 +173,13 @@ MonoBehaviour:
   initState: 0
   patrolPoints: []
   viewDist: 30
-  attackDist: 1
+  attackDist: 3
   moveSpeed: 3.5
   isAttacking: 0
   attackCooldown: 3
   damage: 5
-  explosionRadius: 5
-  explodeDelay: 3
+  explosionRadius: 8
+  explodeDelay: 2
   explosionVFX: {fileID: 1000012903210382, guid: 8b20af3ffd4fbda4ca0104a347b43e6b, type: 3}
 --- !u!1 &3300794874715425120
 GameObject:

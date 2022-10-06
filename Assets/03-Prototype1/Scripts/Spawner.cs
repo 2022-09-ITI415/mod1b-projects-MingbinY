@@ -15,14 +15,21 @@ public class Spawner : MonoBehaviour
     public int enemiesAlive;
     float nextSpawnTime;
 
+    bool loadingLevel;
+
     private void Start()
     {
-        currentWaveIndex = -1;
-        NextWave();
+        currentWaveIndex = 0;
+        loadingLevel = true;
+        LoadFirstLevel();
     }
 
     private void Update()
     {
+        if (loadingLevel)
+        {
+            return;
+        }
         if (enemiesRemaining > 0 && Time.time >= nextSpawnTime)
         {
             enemiesRemaining--;
@@ -34,8 +41,20 @@ public class Spawner : MonoBehaviour
         enemiesAlive = FindObjectsOfType<EnemyController>().Length;
         if (enemiesRemaining == 0 && enemiesAlive == 0)
         {
-            StartCoroutine(NextWave());
+            if (!loadingLevel)
+                loadingLevel = true;
+                StartCoroutine(NextWave());
         }
+    }
+
+    public void LoadFirstLevel()
+    {
+        currentWave = waves[currentWaveIndex];
+        enemiesRemaining = currentWave.enemyCount;
+        enemies = currentWave.enemyTypesInWave;
+        spawnPoints = currentWave.spawnPoints;
+        currentWave.waveWalls.SetActive(true);
+        loadingLevel = false;
     }
 
     IEnumerator NextWave()
@@ -61,6 +80,7 @@ public class Spawner : MonoBehaviour
         enemies = currentWave.enemyTypesInWave;
         spawnPoints = currentWave.spawnPoints;
         currentWave.waveWalls.SetActive(true);
+        loadingLevel = false;
     }
 
     [System.Serializable]

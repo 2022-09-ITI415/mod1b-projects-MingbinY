@@ -401,8 +401,8 @@ MonoBehaviour:
   playerObj: {fileID: 0}
   initState: 0
   patrolPoints: []
-  viewDist: 10
-  attackDist: 5
+  viewDist: 30
+  attackDist: 10
   moveSpeed: 3.5
   isAttacking: 0
   attackCooldown: 1.5

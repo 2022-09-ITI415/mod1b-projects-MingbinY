@@ -60,6 +60,8 @@ public class GunController : MonoBehaviour
 
         if (equippedGun.reloading)
         {
+            nextGunInput = false;
+            prevGunInput = false;
             return;
         }
 

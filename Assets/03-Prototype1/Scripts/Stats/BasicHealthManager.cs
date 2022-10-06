@@ -5,7 +5,7 @@ using UnityEngine;
 public class BasicHealthManager : MonoBehaviour
 {
     public int maxHealth = 100;
-    public int currentHealth;
+    public float currentHealth;
     public bool isDead = false;
 
     public virtual void Awake()
