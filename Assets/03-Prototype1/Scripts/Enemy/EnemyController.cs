@@ -39,6 +39,9 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (isAttacking)
+            return;
+
         switch (currentState)
         {
             case EnemyState.Idle:

@@ -9,12 +9,25 @@ public class Rocket_Bullet : Bullet
 
     public override void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Rocket Trigger");
         //Explosion VFX
         Instantiate(explosionVFX, transform.position, Quaternion.identity);
         Collider[] cols = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider col in cols)
         {
-            BasicHealthManager hm = col.GetComponent<BasicHealthManager>();
+            BasicHealthManager hm;
+            if (b_source == BulletSource.Player)
+            {
+                hm = col.GetComponent<EnemyHealthManager>();
+            }else if (b_source == BulletSource.Enemy)
+            {
+                hm = col.GetComponent<PlayerHealthManager>();
+            }
+            else
+            {
+                hm = col.GetComponent<BasicHealthManager>();
+            }
+
             if (hm)
             {
                 hm.TakeDamage(damage);
