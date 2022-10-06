@@ -25,6 +25,8 @@ public class GunController : MonoBehaviour
     public Image currentGunImage;
     public Image nextGunImage;
     public Image prevGunImage;
+    public GameObject reloadingHint;
+    public Text ammoHint;
 
     private void Start()
     {
@@ -38,6 +40,8 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
+        ammoHint.text = equippedGun.bulletInMag + " / " + equippedGun.bulletPerMag;
+        reloadingHint.SetActive(equippedGun.reloading);
         HandleShoot();
         HandleChangeWeapon();
     }
@@ -105,7 +109,6 @@ public class GunController : MonoBehaviour
             currentGunIndex = 0;
         }
         
-
         int nextGunIndex = currentGunIndex + 1;
         int prevGunIndex = currentGunIndex - 1;
 

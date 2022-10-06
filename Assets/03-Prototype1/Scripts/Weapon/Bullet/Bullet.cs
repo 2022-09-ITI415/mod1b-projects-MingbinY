@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviour
             PlayerHealthManager phm = other.GetComponent<PlayerHealthManager>();
             if (phm != null)
             {
-                phm.TakeDamage(damage);
+                phm.TakeDamage(damage/2);
             }
         }
 

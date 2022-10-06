@@ -21,6 +21,7 @@ public class Rocket_Bullet : Bullet
                 hm = col.GetComponent<EnemyHealthManager>();
             }else if (b_source == BulletSource.Enemy)
             {
+                damage = damage / 2;
                 hm = col.GetComponent<PlayerHealthManager>();
             }
             else

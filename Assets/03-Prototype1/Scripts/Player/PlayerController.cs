@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
             Win();
         }
 
-        HandleJump();
+        //HandleJump();
     }
     private void FixedUpdate()
     {
