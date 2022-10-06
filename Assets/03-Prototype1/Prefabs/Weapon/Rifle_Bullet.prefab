@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1353298821754603361}
   - component: {fileID: 1353298821754603374}
   - component: {fileID: 1353298821754603375}
-  - component: {fileID: 5260833679490627912}
   - component: {fileID: 1697811215979251077}
+  - component: {fileID: -6618442002309482120}
   m_Layer: 0
   m_Name: Rifle_Bullet
   m_TagString: Untagged
@@ -99,21 +99,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5260833679490627912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353298821754603372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55103487f4dae2f47a0298fb811ccf76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  damage: 5
-  b_source: 0
 --- !u!96 &1697811215979251077
 TrailRenderer:
   serializedVersion: 2
@@ -222,3 +207,18 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-6618442002309482120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353298821754603372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a349be55fc255ab4bb4a9a175f5e2d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  damage: 5
+  b_source: 0

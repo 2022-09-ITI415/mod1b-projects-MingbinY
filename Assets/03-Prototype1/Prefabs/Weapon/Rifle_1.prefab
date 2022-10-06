@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4014057163688021435}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5254376180412817167}
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a777799ac72bd4886c11ae6f4d6882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b_source: 0
   gunName: Rifle
   gunSprite: {fileID: 21300044, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
   bulletPerMag: 30
@@ -104,11 +105,13 @@ MonoBehaviour:
   reloadTime: 3
   reloadTimer: 0
   canShoot: 1
+  reloading: 0
   muzzle: {fileID: 5254376180412817167}
-  bullet: {fileID: 5260833679490627912, guid: 051dc4021a5cc474f90abc5ca6c91ba1, type: 3}
+  bullet: {fileID: -6618442002309482120, guid: 9f0c72596f294774e977b6884c71db5b, type: 3}
   msBetweenShots: 100
   muzzleVelocity: 40
   damage: 10
+  nextShotTime: 0
 --- !u!1 &5254376180412817164
 GameObject:
   m_ObjectHideFlags: 0
