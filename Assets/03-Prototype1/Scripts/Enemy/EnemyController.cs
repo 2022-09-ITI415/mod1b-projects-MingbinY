@@ -39,8 +39,6 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        if (isAttacking)
-            return;
 
         switch (currentState)
         {
@@ -93,28 +91,33 @@ public class EnemyController : MonoBehaviour
     void ChaseUpdate()
     {
         agent.stoppingDistance = attackDist;
+        agent.updateRotation = true;
 
-
-        if (!isAttacking && Vector3.Distance(transform.position, playerObj.transform.position) > attackDist + 3)
+        LookAtPlayer();
+        if (!isAttacking && Vector3.Distance(transform.position, playerObj.transform.position) > attackDist)
         {
             // if player is out of attack range and the enemy is not attacking the enemy can move
             agent.SetDestination(playerObj.transform.position);
             return;
         }
 
-        if (PlayerInsight())
-        {
-            LookAtPlayer();
-        }
+        
 
         if (Vector3.Distance(transform.position, playerObj.transform.position) <= attackDist)
         {
-            // if player is in attack range
-            if (!isAttacking)
+            if (PlayerInsight())
             {
-                isAttacking = true;
-                Attack();
+                LookAtPlayer();
+                // if player is in attack range
+                if (!isAttacking)
+                {
+                    isAttacking = true;
+                    Attack();
+                }
             }
+        }else if (!isAttacking)
+        {
+            agent.SetDestination(playerObj.transform.position);
         }
     }
 
@@ -134,7 +137,15 @@ public class EnemyController : MonoBehaviour
         {
             if (col.GetComponent<PlayerController>())
             {
-                return true;
+                RaycastHit hit;
+                Vector3 dir = col.transform.position - transform.position;
+                if (Physics.Raycast(transform.position, dir, out hit))
+                {
+                    if (hit.collider == col)
+                    {
+                        return true;
+                    }
+                }
             }
         }
         return false;
