@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Apple
+  - Projectile
+  - Weapon
+  - Enemy
+  - FX
   layers:
   - Default
   - TransparentFX
@@ -11,13 +16,13 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - AppleTree
+  - Apple
+  - Basket
+  - Projectile
+  - Weapon
+  - Enemy
+  - Player
   - 
   - 
   - 
